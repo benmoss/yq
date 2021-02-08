@@ -71,7 +71,6 @@ Given a sample.yml file of:
 a: {things: great}
 b:
   also: "me"
-
 ```
 then
 ```bash
@@ -276,11 +275,13 @@ yq eval '.foobar * .foobarList' sample.yml
 ```
 will output
 ```yaml
-c: foobarList_c
+c: foobar_c
+!!merge <<: null
+!!merge <<: *foo
+thing: foobar_thing
+b: foobarList_b
 <<:
   - *foo
   - *bar
-thing: foobar_thing
-b: foobarList_b
 ```
 
